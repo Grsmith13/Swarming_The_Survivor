@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://djifcx7lrg0cn"]
+
+[ext_resource type="Script" path="res://hero.gd" id="1_a36vp"]
+[ext_resource type="Texture2D" uid="uid://chel15xeibr2j" path="res://Sprites/Heros/Hul_Hoggie/Hulk_Hoggie_0002.png" id="1_ynj08"]
+[ext_resource type="Texture2D" uid="uid://blxaonhfk3vsy" path="res://Sprites/Heros/Hul_Hoggie/Hulk_Hoggie_0001.png" id="2_0kvfp"]
+[ext_resource type="Texture2D" uid="uid://c05m8b1scbcvh" path="res://Sprites/Heros/Hul_Hoggie/Hulk_Hoggie_0004.png" id="3_vx3wg"]
+[ext_resource type="Texture2D" uid="uid://duao7dj8pw5uj" path="res://Sprites/Heros/Hul_Hoggie/Hulk_Hoggie_0003.png" id="4_lptnd"]
+[ext_resource type="PackedScene" uid="uid://dahavj6l5rm6o" path="res://attack_range.tscn" id="6_ve5fx"]
+[ext_resource type="Script" path="res://HealthComponent.gd" id="7_xv8bp"]
+[ext_resource type="Script" path="res://HitboxComponent.gd" id="8_g2w53"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2e8uu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ynj08")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0kvfp")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vx3wg")
+}],
+"loop": true,
+"name": &"up_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_lptnd")
+}],
+"loop": true,
+"name": &"up_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t6k3p"]
+height = 58.0
+
+[node name="Hero" type="CharacterBody2D"]
+position = Vector2(1, -1)
+script = ExtResource("1_a36vp")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.5, 1)
+scale = Vector2(0.953125, 0.96875)
+sprite_frames = SubResource("SpriteFrames_2e8uu")
+animation = &"up_right"
+frame_progress = 0.0132083
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AttackRange" parent="." instance=ExtResource("6_ve5fx")]
+scale = Vector2(0.336828, 0.33347)
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("7_xv8bp")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("8_g2w53")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t6k3p")

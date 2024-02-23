@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://55ijyplym3gn"]
+
+[ext_resource type="Script" path="res://AttackRange.gd" id="1_pgynt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xu206"]
+radius = 132.015
+
+[node name="AttackRange" type="Area2D"]
+script = ExtResource("1_pgynt")
+
+[node name="AttackRangeShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xu206")
+
+[node name="RightFist" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(22, -12)
+
+[node name="LeftFist" type="Marker2D" parent="."]
+position = Vector2(-21, -12)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

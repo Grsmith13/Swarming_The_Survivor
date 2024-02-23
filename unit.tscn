@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dakoxgjkd7012"]
+
+[ext_resource type="Script" path="res://unit.gd" id="1_igswy"]
+[ext_resource type="Texture2D" uid="uid://dw423tsa4kxpv" path="res://Sprites/Units/Blobby_Hill/Blobby_Hill_0001.png" id="1_q78pa"]
+[ext_resource type="Texture2D" uid="uid://bqrujuywiiu27" path="res://Sprites/Units/Blobby_Hill/Blobby_Hill_0002.png" id="2_ydoog"]
+[ext_resource type="Texture2D" uid="uid://brkccfu2w7ux1" path="res://Sprites/Units/Blobby_Hill/Blobby_Hill_0003.png" id="3_8pjob"]
+[ext_resource type="Texture2D" uid="uid://bdwy63fp0c8h5" path="res://Sprites/Units/Blobby_Hill/Blobby_Hill_0004.png" id="4_sg42u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84vxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q78pa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ydoog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8pjob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sg42u")
+}],
+"loop": true,
+"name": &"jiggle",
+"speed": 6.0
+}]
+
+[node name="Unit" type="CharacterBody2D" groups=["summons"]]
+position = Vector2(1, 0)
+script = ExtResource("1_igswy")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.5, 4.5)
+scale = Vector2(0.890625, 0.859375)
+sprite_frames = SubResource("SpriteFrames_84vxl")
+animation = &"jiggle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15, -18, -15, -18, -24, -12, -30, 0, -30, 8, -24, 21, -8, 30, 1, 29, 9, 28, 16, 22, 23, 12, 23, -3, 16, -14, 6, -20, -2, -21, -13, -20)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

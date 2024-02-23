@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dahavj6l5rm6o"]
+
+[ext_resource type="Script" path="res://AttackRange.gd" id="1_mwcbh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8inr"]
+radius = 502.162
+
+[node name="AttackRange" type="Area2D"]
+scale = Vector2(0.0378837, 0.0398624)
+script = ExtResource("1_mwcbh")
+
+[node name="AttackRangeShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i8inr")
+
+[node name="AttackOrigin" type="Marker2D" parent="AttackRangeShape2D2"]
+unique_name_in_owner = true
+position = Vector2(-0.00012207, -0.00012207)
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
